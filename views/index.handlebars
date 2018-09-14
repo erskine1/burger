@@ -1,37 +1,52 @@
-<h1>eat burger?</h1>
+<div class="jumbotron jumbotron-fluid text-center">
+  <h1>eat burger?</h1>
+</div>
 
-<h2>burgers</h2>
+<container>
 
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      <li>
-        {{burger_name}}
-        <button class="eat-burger" data-id="{{this.id}}" data-eaten="{{devoured}}">EAT BURGER!</button>
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
+<div class="row justify-content-center">
+  <form class="create-form">
+    <div class="form-group">
+      <label for="ca">Add a burger:</label>
+      <input type="text" id="ca" name="name">
+      <button type="submit">Add Burger</button>
+    </div>
 
-<h2>your burger history</h2>
+    
+  </form>
+</div>
 
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-      <li>
-        {{burger_name}}
-        <button class="destroy-burger" data-id="{{this.id}}" data-eaten="{{devoured}}">DESTROY RECEIPT!</button>
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
+<div class="row justify-content-center">
+<div class="card-deck w-50">
 
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+  <div class="card">
+    <div class="card-header">burgers you haven't eaten yet</div>
+    <ul class="list-group list-group-flush">
+      {{#each burgers}}
+        {{#unless devoured}}
+          <li class="list-group-item">
+            {{burger_name}}
+            <button class="eat-burger float-right" data-id="{{this.id}}" data-eaten="{{devoured}}">EAT BURGER!</button>
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
   </div>
-  <button type="submit">Add Burger</button>
-</form>
+
+  <div class="card w-80">
+    <div class="card-header">your burger eating history</div>
+    <ul class="list-group list-group-flush">
+      {{#each burgers}}
+        {{#if devoured}}
+          <li class="list-group-item">
+            {{burger_name}}
+            <button class="destroy-burger float-right" data-id="{{this.id}}" data-eaten="{{devoured}}">DESTROY!</button>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+
+</div>
+</div>
+</container>
